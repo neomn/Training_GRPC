@@ -1,0 +1,13 @@
+version: '3'
+services:
+  grpc_server:
+    build: .
+    command: python grpc_server.py
+    ports:
+      - "50051:50051"
+
+  rest_server:
+    build: .
+    command: gunicorn -b 0.0.0.0:5000 rest_server:app
+    ports:
+      - "5000:5000"
