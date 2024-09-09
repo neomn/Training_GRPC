@@ -11,3 +11,10 @@ services:
     command: gunicorn -b 0.0.0.0:5000 rest_server:app
     ports:
       - "5000:5000"
+
+  benchmark:
+    build: .
+    command: python benchmark.py
+    depends_on:
+      - grpc_server
+      - rest_server
